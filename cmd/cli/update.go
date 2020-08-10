@@ -147,6 +147,11 @@ func (u *updateCmd) run(config *helm.Configuration) error {
 		return err
 	}
 
+	err = u.cfg.validate()
+	if err != nil {
+		return err
+	}
+
 	values, err := u.cfg.resolveValues()
 	if err != nil {
 		return err
