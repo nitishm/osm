@@ -23,6 +23,7 @@ const (
 	zipkinAddressKey               = "zipkin_address"
 	zipkinPortKey                  = "zipkin_port"
 	zipkinEndpointKey              = "zipkin_endpoint"
+	broadcastEveryKey              = "broadcast_every"
 	defaultInMeshCIDR              = ""
 )
 
@@ -91,6 +92,9 @@ type osmConfig struct {
 
 	// UseHTTPSIngress is a bool toggle enabling HTTPS protocol between ingress and backend pods
 	UseHTTPSIngress bool `yaml:"use_https_ingress"`
+
+	// BroadcastEvery is the period (in minutes) the repeater rebroadcasts announcements to the proxies
+	BroadcastEvery int `yaml:"broadcast_every"`
 }
 
 func (c *Client) run(stop <-chan struct{}) {
@@ -137,6 +141,8 @@ func (c *Client) getConfigMap() *osmConfig {
 		ZipkinAddress:  getStringValueForKey(configMap, zipkinAddressKey),
 		ZipkinPort:     getIntValueForKey(configMap, zipkinPortKey),
 		ZipkinEndpoint: getStringValueForKey(configMap, zipkinEndpointKey),
+
+		BroadcastEvery: getIntValueForKey(configMap, broadcastEveryKey),
 	}
 }
 

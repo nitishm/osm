@@ -97,3 +97,8 @@ func (f FakeConfigurator) GetZipkinPort() uint32 {
 func (f FakeConfigurator) GetZipkinEndpoint() string {
 	return constants.DefaultZipkinEndpoint
 }
+
+// BroadcastEvery is the period (in minutes) the repeater rebroadcasts announcements to the proxies
+func (f FakeConfigurator) BroadcastEvery() int {
+	return constants.BroadcastEvery
+}
