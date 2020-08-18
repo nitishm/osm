@@ -3,11 +3,10 @@ package configurator
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/openservicemesh/osm/pkg/constants"
 	"net"
 	"sort"
 	"strings"
-
-	"github.com/openservicemesh/osm/pkg/constants"
 )
 
 // The functions in this file implement the configurator.Configurator interface
@@ -115,11 +114,6 @@ func (c *Client) GetMeshCIDRRanges() []string {
 // UseHTTPSIngress determines whether traffic between ingress and backend pods should use HTTPS protocol
 func (c *Client) UseHTTPSIngress() bool {
 	return c.getConfigMap().UseHTTPSIngress
-}
-
-// BroadcastEvery sets the period (in minutes) the repeater rebroadcasts announcements to the proxies
-func (c *Client) BroadcastEvery() int {
-	return c.getConfigMap().BroadcastEvery
 }
 
 // GetAnnouncementsChannel returns a channel, which is used to announce when changes have been made to the OSM ConfigMap.
